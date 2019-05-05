@@ -1,7 +1,18 @@
 {
   "name": "@naturalcycles/json2html",
-  "scripts": {},
-  "dependencies": {},
+  "scripts": {
+    "json2html": "tsn ./src/bin/json2html.ts",
+    "json2html-debug": "tsn ./src/bin/json2html.ts './src/test/**/*.json' --debug"
+  },
+  "dependencies": {
+    "@naturalcycles/js-lib": "^4.8.1",
+    "@naturalcycles/promise-lib": "^2.2.0",
+    "fs-extra": "^7.0.1",
+    "globby": "^9.2.0",
+    "loud-rejection": "^2.1.0",
+    "type-fest": "^0.4.1",
+    "yargs": "^13.2.2"
+  },
   "devDependencies": {
     "@naturalcycles/dev-lib": "^7.3.1",
     "@naturalcycles/semantic-release": "^1.0.0",
@@ -18,6 +29,9 @@
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "json2html": "dist/bin/json2html.js"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -29,7 +43,14 @@
     "node": ">=10.13"
   },
   "version": "0.0.0",
-  "description": "",
+  "description": "Render arbitrary json as human-friendly html. CLI and API.",
+  "keywords": [
+    "json",
+    "html",
+    "json2html",
+    "json-to-html",
+    "cli"
+  ],
   "author": "Natural Cycles Team",
   "license": "MIT"
 }

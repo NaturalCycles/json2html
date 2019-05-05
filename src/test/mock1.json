@@ -1,0 +1,120 @@
+{
+  "testsuite": [
+    {
+      "name": "TestCafe Tests: HeadlessChrome 71.0.3578 / Linux 0.0.0",
+      "tests": 36,
+      "failures": 0,
+      "skipped": 2,
+      "errors": 0,
+      "time": 290.073,
+      "timestamp": "Fri, 03 May 2019 19:22:31 GMT",
+      "testcase": {
+        "classname": "1028 Release Testing Protocol\n  TC-01: Adding Data (RID-4.2.6.6)",
+        "name": "Prevent, Celcius:\n    Temperature 3500, check for spotting, lh negative and sex icons\n  ",
+        "time": 24.283
+      }
+    },
+    {
+      "name": "TestCafe Tests: HeadlessChrome 71.0.3578 / Linux 0.0.0",
+      "tests": 36,
+      "failures": 0,
+      "skipped": 2,
+      "errors": 0,
+      "time": 290.073,
+      "timestamp": "Fri, 03 May 2019 19:22:31 GMT",
+      "testcase": [
+        {
+          "classname": "1028 Release Testing Protocol\n  TC-01: Adding Data (RID-4.2.6.6)",
+          "name": "Prevent, Celcius:\n    Temperature 3500, check for spotting, lh negative and sex icons\n  ",
+          "time": 24.283
+        },
+        {
+          "classname": "1028 Release Testing Protocol\n  TC-01: Adding Data (RID-4.2.6.6)",
+          "name": "Prevent, Celcius:\n    Temperature 4099 can be entered\n  ",
+          "time": 24.429
+        },
+        {
+          "classname": "Add data\n  Navigation tests (Fahrenheit)",
+          "name": "1103: TC1.5.05 - as a user with my units set to Fahrenheit who has input a temperature value I should be able\n   to swipe left or right to other days Data entry screen and have the value saved",
+          "time": 132.306,
+          "skipped": ""
+        },
+        {
+          "classname": "Sign up process\n  \"Subcription Plans\"-page (1103: TC1.13.02a)\n  subscriptionPlans.test.ts",
+          "name": "as a user who on 'Subscription plans' page I should be able to find, select Annual\n   plan and be landed on 'Shipping address' page",
+          "time": 131.382
+        }
+      ]
+    },
+    {
+      "name": "TestCafe Tests: HeadlessChrome 71.0.3578 / Linux 0.0.0",
+      "tests": 32,
+      "failures": 0,
+      "skipped": 1,
+      "errors": 0,
+      "time": 195.289,
+      "timestamp": "Fri, 03 May 2019 19:20:01 GMT",
+      "testcase": [
+        {
+          "classname": "1028 Release Testing Protocol\n  TC-02: Editing Data in Month page",
+          "name": "Prevent, Celcius:\n    Adding lh negative test\n  ",
+          "time": 50.871
+        },
+        {
+          "classname": "1028 Release Testing Protocol\n  TC-02: Editing Data in Month page",
+          "name": "Plan, Celcius:\n    Adding lh positive test\n  ",
+          "time": 50.767
+        },
+        {
+          "classname": "Sign up process\n  Shipping address\n  04-shippingAddress.test.ts",
+          "name": "as a user who on 'Shipping address' page and selected US as a Country and IP\n   country is US I should have a Fahrenheit thermometer preselected otherwise Celsius",
+          "time": 88.475,
+          "skipped": ""
+        }
+      ]
+    },
+    {
+      "name": "TestCafe Tests: HeadlessChrome 71.0.3578 / Linux 0.0.0",
+      "tests": 27,
+      "failures": 0,
+      "skipped": 2,
+      "errors": 0,
+      "time": 212.628,
+      "timestamp": "Fri, 03 May 2019 19:20:51 GMT",
+      "testcase": [
+        {
+          "classname": "1028 Release Testing Protocol\n  TC-15: Language Switching",
+          "name": "To Portuguese - Prevent, Celsius",
+          "time": 44.417
+        },
+        {
+          "classname": "Add data\n  Data input other than temperature value (Celsius)",
+          "name": "1103: TC1.5.01-d - as a user with my units set to Celsius I should be able to select Spotting or Period or\n   remove the selection by using the applicable buttons. I should also be able to leave the selection empty",
+          "time": 26.847
+        },
+        {
+          "classname": "Add data\n  Data input other than temperature value (Celsius)",
+          "name": "1103: TC1.5.01b - as a user with my units set to Celsius I should be able to enter a Ovulation Test as positive\n   or negative or remove the selection by using the applicable buttons. I should also be able to leave the selection empty",
+          "time": 26.678
+        },
+        {
+          "classname": "Add data\n  Data input other than temperature value (Celsius)",
+          "name": "1103: TC1.5.06 - as a user with my units set to Celsius and who is monitoring a pregnancy I should be able\n   to confirm when the pregnancy has ended by selecting No longer pregnant button and confirm the date by using a date picker",
+          "time": 23.563,
+          "skipped": ""
+        },
+        {
+          "classname": "Add data\n  Data input other than temperature value (Fahrenheit)",
+          "name": "1103: TC1.5.06 - as a user with my units set to Fahrenheit and who is monitoring a pregnancy I should be able\n   to confirm when the pregnancy has ended by selecting No longer pregnant button and confirm the date by using a date picker",
+          "time": 146.332,
+          "skipped": ""
+        },
+        {
+          "classname": "In payment process",
+          "name": "as a user with 3DSecure Visa Card on 'Add payment method' page I should not be able\n   to pass this step entering wrong 3DSecure code",
+          "time": 146.327
+        }
+      ]
+    }
+  ]
+}
