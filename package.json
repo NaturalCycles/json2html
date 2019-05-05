@@ -42,7 +42,7 @@
   "engines": {
     "node": ">=10.13"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Render arbitrary json as human-friendly html. CLI and API.",
   "keywords": [
     "json",
