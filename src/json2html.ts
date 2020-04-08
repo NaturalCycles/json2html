@@ -1,7 +1,6 @@
-import { StringMap } from '@naturalcycles/js-lib'
-import { pMap } from '@naturalcycles/promise-lib'
+import { pMap, StringMap } from '@naturalcycles/js-lib'
 import * as fs from 'fs-extra'
-import globby from 'globby'
+import * as globby from 'globby'
 import { JsonArray, JsonObject, JsonValue } from 'type-fest'
 import * as yargs from 'yargs'
 import { Formatter, JSON_TYPE } from './json2html.model'
@@ -19,7 +18,7 @@ const FORMATTERS: StringMap<Formatter> = {
 
 const DEF_FORMATTER: Formatter = stringFormatter
 
-export async function json2htmlCommand (): Promise<void> {
+export async function json2htmlCommand(): Promise<void> {
   const d = Date.now()
   const { argv } = yargs.demandCommand(1).options({
     debug: {
@@ -45,17 +44,17 @@ export async function json2htmlCommand (): Promise<void> {
   console.log(`json2html saved ${inputFiles.length} file(s) in ${Date.now() - d} ms`)
 }
 
-export function json2html (json: JsonValue): string {
+export function json2html(json: JsonValue): string {
   return wrapHtml(jsonValueToHtml(json, 1))
 }
 
-export function jsonValueToHtml (json: JsonValue, level: number): string {
+export function jsonValueToHtml(json: JsonValue | undefined, level: number): string {
   const type = getType(json)
   const formatter = FORMATTERS[type] || DEF_FORMATTER
   return formatter(json, level)
 }
 
-function getType (json: JsonValue): JSON_TYPE {
+function getType(json?: JsonValue): JSON_TYPE {
   if (json === undefined) return JSON_TYPE.UNDEFINED
   if (json === null) return JSON_TYPE.NULL
   if (typeof json === 'string') return JSON_TYPE.STRING
@@ -66,31 +65,31 @@ function getType (json: JsonValue): JSON_TYPE {
   return JSON_TYPE.OTHER
 }
 
-function undefinedFormatter (): string {
+function undefinedFormatter(): string {
   return `<div class="jsonType jsonType--undefined">undefined</div>`
 }
 
-function nullFormatter (): string {
+function nullFormatter(): string {
   return `<div class="jsonType jsonType--null">null</div>`
 }
 
-function stringFormatter (v: string): string {
+function stringFormatter(v: string): string {
   return `<div class="jsonType jsonType--string">${String(v)}</div>`
 }
 
-function objectKeyFormatter (v: string): string {
+function objectKeyFormatter(v: string): string {
   return `<div class="jsonType jsonType--objectKey">${String(v)}</div>`
 }
 
-function numberFormatter (v: number): string {
+function numberFormatter(v: number): string {
   return `<div class="jsonType jsonType--number">${String(Number(v))}</div>`
 }
 
-function booleanFormatter (v: boolean): string {
+function booleanFormatter(v: boolean): string {
   return `<div class="jsonType jsonType--boolean">${String(Boolean(v))}</div>`
 }
 
-function arrayFormatter (a: JsonArray, level: number): string {
+function arrayFormatter(a: JsonArray, level: number): string {
   return [
     `<div class="jsonType jsonType--array jsonType--level${level}">`,
     a.map(v => jsonValueToHtml(v, level)).join(`<div class="jsonType--arraySpace"></div>`),
@@ -98,7 +97,7 @@ function arrayFormatter (a: JsonArray, level: number): string {
   ].join('\n')
 }
 
-function objectFormatter (o: JsonObject, level: number): string {
+function objectFormatter(o: JsonObject, level: number): string {
   return [
     `<table class="jsonType jsonType--object jsonType--level${level}">`,
     ...Object.entries(o).map(([k, v]) => {

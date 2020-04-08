@@ -1,4 +1,4 @@
-export function wrapHtml (html: string): string {
+export function wrapHtml(html: string): string {
   return `<html>
 <head>
 <style>

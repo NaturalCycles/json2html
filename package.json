@@ -5,19 +5,17 @@
     "json2html-debug": "tsn ./src/bin/json2html.ts './src/test/**/*.json' --debug"
   },
   "dependencies": {
-    "@naturalcycles/js-lib": "^4.8.1",
-    "@naturalcycles/promise-lib": "^2.2.0",
-    "fs-extra": "^7.0.1",
-    "globby": "^9.2.0",
+    "@naturalcycles/js-lib": "^10.2.0",
+    "fs-extra": "^9.0.0",
+    "globby": "^11.0.0",
     "loud-rejection": "^2.1.0",
-    "type-fest": "^0.4.1",
-    "yargs": "^13.2.2"
+    "type-fest": "^0.13.0",
+    "yargs": "^15.3.1"
   },
   "devDependencies": {
-    "@naturalcycles/dev-lib": "^7.3.1",
-    "@naturalcycles/semantic-release": "^1.0.0",
-    "@types/node": "^12.0.0",
-    "jest": "^24.7.1"
+    "@naturalcycles/dev-lib": "^10.14.4",
+    "@types/node": "^13.11.0",
+    "jest": "^25.2.7"
   },
   "files": [
     "dist",
