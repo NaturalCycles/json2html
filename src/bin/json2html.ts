@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
-import 'loud-rejection/register'
+import { runScript } from '@naturalcycles/nodejs-lib/dist/script'
 import { json2htmlCommand } from '../json2html'
 
-void json2htmlCommand()
+runScript(async () => {
+  await json2htmlCommand()
+})

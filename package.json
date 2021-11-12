@@ -1,21 +1,21 @@
 {
   "name": "@naturalcycles/json2html",
   "scripts": {
+    "prepare": "husky install",
     "json2html": "tsn ./src/bin/json2html.ts",
     "json2html-debug": "tsn ./src/bin/json2html.ts './src/test/**/*.json' --debug"
   },
   "dependencies": {
-    "@naturalcycles/js-lib": "^10.2.0",
-    "fs-extra": "^9.0.0",
+    "@naturalcycles/js-lib": "^14.68.0",
+    "@naturalcycles/nodejs-lib": "^12.53.0",
+    "fs-extra": "^10.0.0",
     "globby": "^11.0.0",
-    "loud-rejection": "^2.1.0",
-    "type-fest": "^0.13.0",
-    "yargs": "^15.3.1"
+    "yargs": "^17.2.1"
   },
   "devDependencies": {
-    "@naturalcycles/dev-lib": "^10.14.4",
-    "@types/node": "^13.11.0",
-    "jest": "^25.2.7"
+    "@naturalcycles/dev-lib": "^12.12.2",
+    "@types/node": "^16.11.7",
+    "jest": "^27.3.1"
   },
   "files": [
     "dist",
@@ -38,7 +38,7 @@
     "url": "https://github.com/NaturalCycles/json2html"
   },
   "engines": {
-    "node": ">=10.13"
+    "node": ">=14.15.0"
   },
   "version": "1.1.0",
   "description": "Render arbitrary json as human-friendly html. CLI and API.",

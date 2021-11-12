@@ -1,4 +1,4 @@
-export enum JSON_TYPE {
+export enum JsonType {
   UNDEFINED = 'undefined',
   NULL = 'null',
   STRING = 'string',

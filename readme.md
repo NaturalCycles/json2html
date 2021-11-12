@@ -32,7 +32,7 @@ json2html 'someDir/**/*.json'
 
 # Packaging
 
-- `engines.node >= 10.13`: Latest Node.js LTS
-- `main: dist/index.js`: commonjs, es2018
+- `engines.node >= 14.15`: Latest Node.js LTS
+- `main: dist/index.js`: commonjs, es2020
 - `types: dist/index.d.ts`: typescript types
 - `/src` folder with source `*.ts` files included

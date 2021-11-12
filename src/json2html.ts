@@ -1,34 +1,35 @@
-import { pMap, StringMap } from '@naturalcycles/js-lib'
+import { _since, AnyObject, pMap, StringMap } from '@naturalcycles/js-lib'
 import * as fs from 'fs-extra'
 import * as globby from 'globby'
-import { JsonArray, JsonObject, JsonValue } from 'type-fest'
 import * as yargs from 'yargs'
-import { Formatter, JSON_TYPE } from './json2html.model'
+import { Formatter, JsonType } from './json2html.model'
 import { wrapHtml } from './tmpl'
 
 const FORMATTERS: StringMap<Formatter> = {
-  [JSON_TYPE.UNDEFINED]: undefinedFormatter,
-  [JSON_TYPE.NULL]: nullFormatter,
-  [JSON_TYPE.STRING]: stringFormatter,
-  [JSON_TYPE.NUMBER]: numberFormatter,
-  [JSON_TYPE.BOOLEAN]: booleanFormatter,
-  [JSON_TYPE.ARRAY]: arrayFormatter,
-  [JSON_TYPE.OBJECT]: objectFormatter,
+  [JsonType.UNDEFINED]: undefinedFormatter,
+  [JsonType.NULL]: nullFormatter,
+  [JsonType.STRING]: stringFormatter,
+  [JsonType.NUMBER]: numberFormatter,
+  [JsonType.BOOLEAN]: booleanFormatter,
+  [JsonType.ARRAY]: arrayFormatter,
+  [JsonType.OBJECT]: objectFormatter,
 }
 
 const DEF_FORMATTER: Formatter = stringFormatter
 
 export async function json2htmlCommand(): Promise<void> {
-  const d = Date.now()
+  const started = Date.now()
+
   const { argv } = yargs.demandCommand(1).options({
     debug: {
       type: 'boolean',
     },
   })
   const { _: inputPatterns, debug } = argv
+
   if (debug) console.log({ argv })
 
-  const inputFiles = await globby(inputPatterns)
+  const inputFiles = globby.sync(inputPatterns as string[])
   if (!inputFiles.length) {
     console.log(`json2html found 0 files matching input patterns: ${inputPatterns.join(' ')}`)
     process.exit(1)
@@ -41,28 +42,28 @@ export async function json2htmlCommand(): Promise<void> {
     await fs.writeFile(outFile, html)
   })
 
-  console.log(`json2html saved ${inputFiles.length} file(s) in ${Date.now() - d} ms`)
+  console.log(`json2html saved ${inputFiles.length} file(s) in ${_since(started)}`)
 }
 
-export function json2html(json: JsonValue): string {
+export function json2html(json: any): string {
   return wrapHtml(jsonValueToHtml(json, 1))
 }
 
-export function jsonValueToHtml(json: JsonValue | undefined, level: number): string {
+export function jsonValueToHtml(json: any, level: number): string {
   const type = getType(json)
   const formatter = FORMATTERS[type] || DEF_FORMATTER
   return formatter(json, level)
 }
 
-function getType(json?: JsonValue): JSON_TYPE {
-  if (json === undefined) return JSON_TYPE.UNDEFINED
-  if (json === null) return JSON_TYPE.NULL
-  if (typeof json === 'string') return JSON_TYPE.STRING
-  if (typeof json === 'number') return JSON_TYPE.NUMBER
-  if (typeof json === 'boolean') return JSON_TYPE.BOOLEAN
-  if (Array.isArray(json)) return JSON_TYPE.ARRAY
-  if (typeof json === 'object') return JSON_TYPE.OBJECT
-  return JSON_TYPE.OTHER
+function getType(json: any): JsonType {
+  if (json === undefined) return JsonType.UNDEFINED
+  if (json === null) return JsonType.NULL
+  if (typeof json === 'string') return JsonType.STRING
+  if (typeof json === 'number') return JsonType.NUMBER
+  if (typeof json === 'boolean') return JsonType.BOOLEAN
+  if (Array.isArray(json)) return JsonType.ARRAY
+  if (typeof json === 'object') return JsonType.OBJECT
+  return JsonType.OTHER
 }
 
 function undefinedFormatter(): string {
@@ -89,7 +90,7 @@ function booleanFormatter(v: boolean): string {
   return `<div class="jsonType jsonType--boolean">${String(Boolean(v))}</div>`
 }
 
-function arrayFormatter(a: JsonArray, level: number): string {
+function arrayFormatter(a: any[], level: number): string {
   return [
     `<div class="jsonType jsonType--array jsonType--level${level}">`,
     a.map(v => jsonValueToHtml(v, level)).join(`<div class="jsonType--arraySpace"></div>`),
@@ -97,13 +98,12 @@ function arrayFormatter(a: JsonArray, level: number): string {
   ].join('\n')
 }
 
-function objectFormatter(o: JsonObject, level: number): string {
+function objectFormatter(o: AnyObject, level: number): string {
   return [
     `<table class="jsonType jsonType--object jsonType--level${level}">`,
     ...Object.entries(o).map(([k, v]) => {
       const type = getType(v)
-      const of =
-        type === JSON_TYPE.ARRAY && (v as JsonArray).length ? getType((v as JsonArray)[0]) : ''
+      const of = type === JsonType.ARRAY && (v as any[]).length ? getType((v as any[])[0]) : ''
 
       return [
         `<tr data-key="${k}" data-type="${type}" data-of="${of}">`,
